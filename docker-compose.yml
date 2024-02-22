@@ -1,6 +1,5 @@
 version: '3.3'
 services:
-
   main:
     container_name: main
     build:
@@ -10,3 +9,21 @@ services:
       - ./main:/app
     ports:
       - "3000:3000"
+    environment:
+      - MONGO_URL=mongodb://userdb:27017/demo
+    depends_on:
+      - userdb
+
+  userdb:
+    image: mongo:latest
+    container_name: userdb
+    ports:
+      - "27017:27017"
+    restart: always
+    environment:
+        # MONGO_INITDB_ROOT_USERNAME: admin
+        # MONGO_INITDB_ROOT_PASSWORD: 123456
+        MONGO_INITDB_DATABASE: demo
+    volumes: 
+      - ./init-users.js:/docker-entrypoint-initdb.d/init-users.js:ro
+      - /data/db
