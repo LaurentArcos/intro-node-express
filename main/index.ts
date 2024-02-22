@@ -3,6 +3,7 @@ import express from 'express'
 import usersRoute from './routes/usersRoute'
 import moviesRoute from './routes/moviesRoute'
 import Mongoose from 'mongoose'
+import path from 'node:path'
 const port:number = 3000
 const app = express()
 require('dotenv').config()
@@ -11,6 +12,9 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended : false
 }))
+
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views'))
 
 Mongoose.connect(process.env.MONGO_URI as string)
 
@@ -21,7 +25,7 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 
 app.get('/', (req : Request, res : Response) => {
-    res.send('Welcome to our first API using node')
+    res.render('home')
 })
 
 
