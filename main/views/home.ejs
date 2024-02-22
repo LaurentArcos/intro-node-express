@@ -6,6 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcome to my API !!</h1>
+    <h1>Welcome we have <%= users.length %> users</h1>
+    <ul>
+        <% users.forEach(user => { %> 
+        <li><%= user.username %></li>
+        <% }); %> 
+    </ul>
 </body>
 </html>

@@ -28,6 +28,14 @@ app.get('/', (req : Request, res : Response) => {
     res.render('home')
 })
 
+app.get('/login', (req : Request, res : Response) => {
+    res.render('login')
+})
+
+app.get('/register', (req : Request, res : Response) => {
+    res.render('register')
+})
+
 
 app.use('/api', usersRoute, moviesRoute)
 
