@@ -2,5 +2,5 @@ FROM node:20-alpine
 RUN mkdir -p /app
 WORKDIR /app
 EXPOSE 3000 
-CMD npm install 
-CMD npm run dev
+RUN npm install 
+RUN npm run dev
