@@ -1,11 +1,18 @@
 import mongoose from 'mongoose'
 
 
+const mongoUrl:string = process.env.MONGO_URL || "mongodb://mongodb:27017/demo";
+mongoose.connect(mongoUrl);
+
 const userSchema = new mongoose.Schema({
-    username : {
+    email : { 
         type : String,
         required : true,
         unique : true
+    },
+    username : {
+        type : String,
+        required : true,
     },
     password : {
         type : String,

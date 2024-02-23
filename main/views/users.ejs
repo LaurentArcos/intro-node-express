@@ -6,7 +6,12 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>Welcome we have <%= users.length %> users</h1>
     <a href="/login">login</a>
-    <a href="/register">register</a>
+    <ul>
+        <% users.forEach(user => { %> 
+        <li><%= user.username %></li>
+        <% }); %> 
+    </ul>
 </body>
 </html>

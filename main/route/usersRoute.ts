@@ -1,17 +1,18 @@
 import {Request, Response} from 'express-serve-static-core'
 import express from 'express'
-import User from '../models/User'
+import User from '../model/User'
 const usersRoute = express.Router()
+import verify from '../middleware/verify'
 
 
 
-usersRoute.get('/users', async  (req : Request, res : Response) => {
+usersRoute.get('/users', verify ,  async  (req : Request, res : Response) => {
     try{
         // On vient recuperer le model user et on applique la methode .find() qui va nous permettre de recuperer les documents dans la collection User
         const users = await User.find()
         // on remplace notre res.json(users) par res.render car l'on veut render une page ejs en lui passant nos users
         // dans notre fichier ejs on sera en mesure de recuperer ces users et les manipuler
-        res.render('home', {users})
+        res.render('users', {users})
     }
     catch(err){
         console.error(err)
